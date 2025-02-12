@@ -1,5 +1,5 @@
 import { Ollama } from "ollama";
-import { AiMessage } from "../src/store/types";
+import { AiMessage } from "../web-app/src/store/types";
 
 export async function AskOllama(
   content: string,
@@ -17,8 +17,8 @@ export async function AskOllama(
   }
   const endOfThink = "</think>";
   const match = text.indexOf("</think>");
-  const reason = text.slice(7, match);
-  const answer = text.slice(match + endOfThink.length);
+  const reason = text.slice(7, match).trim();
+  const answer = text.slice(match + endOfThink.length).trim();
   return {
     reason,
     answer,

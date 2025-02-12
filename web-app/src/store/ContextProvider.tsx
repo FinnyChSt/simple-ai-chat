@@ -1,6 +1,7 @@
 import { useState, ReactNode } from "react";
 import { ChatContext } from "./ChatContext";
 import { ChatMessage } from "./types";
+import { ChatsResponse } from "../api/api.types";
 
 export function ChatProvider({ children }: { children: ReactNode }) {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
@@ -11,6 +12,8 @@ export function ChatProvider({ children }: { children: ReactNode }) {
   });
   const [isLoadingAnswer, setIsLoadingAnswer] = useState<boolean>(false);
   const [model, setModel] = useState<string>("deepseek-r1:8b");
+  const [currentChatId, setCurrentChatId] = useState<number>(0);
+  const [chats, setChats] = useState<ChatsResponse[]>([]);
   return (
     <ChatContext.Provider
       value={{
@@ -22,6 +25,10 @@ export function ChatProvider({ children }: { children: ReactNode }) {
         setIsLoadingAnswer,
         model,
         setModel,
+        currentChatId,
+        setCurrentChatId,
+        chats,
+        setChats,
       }}
     >
       {children}

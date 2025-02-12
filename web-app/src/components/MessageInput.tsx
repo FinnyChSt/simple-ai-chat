@@ -1,16 +1,38 @@
 import { useState } from "react";
 import { FiSend } from "react-icons/fi";
 import { useChat } from "../store/ChatContext";
-import { AskOllama } from "../../utils/ollama";
+import { AskOllama } from "../../../utils/ollama";
+import axios from "axios";
 function MessageInput() {
-  const { messages, setMessages, setIsLoadingAnswer, isLoadingAnswer, model } =
-    useChat();
+  const {
+    messages,
+    setMessages,
+    setIsLoadingAnswer,
+    isLoadingAnswer,
+    model,
+    setCurrentChatId,
+    currentChatId,
+  } = useChat();
   const [question, setQuestion] = useState("");
   const onSubmit = async () => {
+    if (!currentChatId) {
+      const res = await axios.post("http://localhost:8080/startChat", {
+        title: question,
+      });
+      setCurrentChatId(res.data.chatId);
+    }
     setIsLoadingAnswer(true);
     setMessages([...messages, { question, answer: "", reason: "" }]);
     setQuestion("");
     const { answer, reason } = await AskOllama(question, model);
+    axios.post("http://localhost:8080/updateChatMessages", [
+      {
+        chatId: currentChatId,
+        question,
+        answer,
+        reason,
+      },
+    ]);
     setMessages([...messages, { question, answer, reason }]);
     setIsLoadingAnswer(false);
   };

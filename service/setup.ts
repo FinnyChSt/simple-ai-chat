@@ -12,19 +12,19 @@ export async function initDb() {
   try {
     conn = await pool.getConnection();
     await conn.query(`
-      CREATE TABLE IF NOT EXISTS Chat (
+      CREATE TABLE IF NOT EXISTS chat(
         chatId INT AUTO_INCREMENT PRIMARY KEY,
         title VARCHAR(255) NOT NULL,
         time_last_question DATETIME DEFAULT CURRENT_TIMESTAMP
       );
     `);
     await conn.query(`
-      CREATE TABLE IF NOT EXISTS Message (
+      CREATE TABLE IF NOT EXISTS message (
         messageId INT AUTO_INCREMENT PRIMARY KEY,
         chatId INT NOT NULL,
         question TEXT,
         answer TEXT,
-        FOREIGN KEY (chatId) REFERENCES Chat(chatId)
+        FOREIGN KEY (chatId) REFERENCES chat(chatId)
       );
     `);
     console.log("Database tables initialized.");

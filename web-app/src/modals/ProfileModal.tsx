@@ -1,6 +1,6 @@
 import { useLayoutEffect, useRef, useState } from "react";
 import { FiX } from "react-icons/fi";
-import { ListOfOllamaModels } from "../../utils/ollama";
+import { ListOfOllamaModels } from "../../../utils/ollama";
 import { useChat } from "../store/ChatContext";
 
 interface ProfileModalProps {

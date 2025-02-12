@@ -1,3 +1,5 @@
+import { ChatsResponse } from "../api/api.types";
+
 export interface AiMessage {
   answer: string;
   reason: string;
@@ -16,4 +18,8 @@ export interface ChatContextType {
   setIsLoadingAnswer: (isLoading: boolean) => void;
   model: string;
   setModel: (model: string) => void;
+  currentChatId: number;
+  setCurrentChatId: (id: number) => void;
+  chats: ChatsResponse[];
+  setChats: (chats: ChatsResponse[]) => void;
 }
