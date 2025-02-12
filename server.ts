@@ -2,6 +2,7 @@ import express from "express";
 import path from "path";
 import { initDb, pool } from "./service/setup";
 import { error } from "console";
+import { PostMessage } from "./service/message";
 
 const app = express();
 const PORT = 8080;
@@ -22,6 +23,13 @@ app.get("/health", async (req, res) => {
     console.log(`MariaDb connection error: ${error}`);
     res.send("service is not healthy");
   }
+});
+
+app.post("/message", async (req, res) => {
+  const message = await PostMessage(req.body.question);
+  res.json({
+    answer: message,
+  });
 });
 
 initDb().then(() => {
