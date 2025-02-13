@@ -1,5 +1,5 @@
 import { Ollama } from "ollama";
-import { AiMessage } from "../web-app/src/store/types";
+import { AiMessage } from "../types/message.types";
 
 export async function AskOllama(
   content: string,

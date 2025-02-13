@@ -12,7 +12,7 @@ export function ChatProvider({ children }: { children: ReactNode }) {
   });
   const [isLoadingAnswer, setIsLoadingAnswer] = useState<boolean>(false);
   const [model, setModel] = useState<string>("deepseek-r1:8b");
-  const [currentChatId, setCurrentChatId] = useState<number>(0);
+  const [currentChatId, setCurrentChatId] = useState<number>();
   const [chats, setChats] = useState<ChatsResponse[]>([]);
   return (
     <ChatContext.Provider

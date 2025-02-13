@@ -1,3 +1,4 @@
+# TODO configure ollama to run via docker network
 services:
   ai-chat: 
     build: .
@@ -16,6 +17,11 @@ services:
       - "3306:3306"
     volumes:
       - db_ai_chat_data:/var/lib/mysql
+  # ollama:
+  #   image: ollama/ollama:latest 
+  #   restart: always
+  #   ports:
+  #     - "11434:11434"
 
 volumes:
   db_ai_chat_data:

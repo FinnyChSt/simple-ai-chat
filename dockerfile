@@ -1,5 +1,5 @@
 
-FROM node:18-alpine AS web-app-builder
+FROM node:22-alpine AS web-app-builder
 WORKDIR /app
 COPY service/routes.ts ./service/routes.ts
 COPY types ./types
@@ -7,7 +7,7 @@ COPY web-app ./web-app
 WORKDIR /app/web-app
 RUN npm install && npm run build
 
-FROM node:18-alpine
+FROM node:22-alpine
 WORKDIR /app
 
 COPY package.json package-lock.json* ./
