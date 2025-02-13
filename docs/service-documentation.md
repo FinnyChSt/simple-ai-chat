@@ -23,6 +23,7 @@ CREATE TABLE Message (
     chatId INT NOT NULL,
     question TEXT,
     answer TEXT,
+    reason TEXT,
     FOREIGN KEY (chatId) REFERENCES Chat(chatId)
 );
 ```

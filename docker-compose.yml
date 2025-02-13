@@ -1,4 +1,9 @@
 services:
+  ai-chat: 
+    build: .
+    restart: always
+    ports:
+      - "8080:8080"
   mariadb:
     image: mariadb:latest
     restart: always
@@ -8,9 +13,9 @@ services:
       MYSQL_USER: maria
       MYSQL_PASSWORD: maria123
     ports:
-      -"3306:3306"
+      - "3306:3306"
     volumes:
-      -db_ai_chat_data:/var/lib/mysql
+      - db_ai_chat_data:/var/lib/mysql
 
 volumes:
   db_ai_chat_data:

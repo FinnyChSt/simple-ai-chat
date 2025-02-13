@@ -1,13 +1,5 @@
+import { ChatMessage } from "../../../types/message.types";
 import { ChatsResponse } from "../api/api.types";
-
-export interface AiMessage {
-  answer: string;
-  reason: string;
-}
-
-export interface ChatMessage extends AiMessage {
-  question: string;
-}
 
 export interface ChatContextType {
   messages: ChatMessage[];

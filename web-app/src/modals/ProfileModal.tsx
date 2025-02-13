@@ -1,7 +1,7 @@
 import { useLayoutEffect, useRef, useState } from "react";
 import { FiX } from "react-icons/fi";
-import { ListOfOllamaModels } from "../../../utils/ollama";
 import { useChat } from "../store/ChatContext";
+import { GetModelsList } from "../api/message.service";
 
 interface ProfileModalProps {
   onClose: () => void;
@@ -13,7 +13,7 @@ function ProfileModal({ onClose }: ProfileModalProps) {
   const { setModel } = useChat();
   useLayoutEffect(() => {
     const getList = async () => {
-      const newList = await ListOfOllamaModels();
+      const newList = await GetModelsList();
       setList(newList);
     };
     getList();

@@ -1,7 +1,7 @@
 import { useState, ReactNode } from "react";
 import { ChatContext } from "./ChatContext";
-import { ChatMessage } from "./types";
 import { ChatsResponse } from "../api/api.types";
+import { ChatMessage } from "../../../types/message.types";
 
 export function ChatProvider({ children }: { children: ReactNode }) {
   const [messages, setMessages] = useState<ChatMessage[]>([]);

@@ -1,8 +1,12 @@
 import { useState } from "react";
 import { FiSend } from "react-icons/fi";
 import { useChat } from "../store/ChatContext";
-import { AskOllama } from "../../../utils/ollama";
-import axios from "axios";
+
+import {
+  AskQuestion,
+  StartChat,
+  UpdateChatTitle,
+} from "../api/message.service";
 function MessageInput() {
   const {
     messages,
@@ -16,23 +20,20 @@ function MessageInput() {
   const [question, setQuestion] = useState("");
   const onSubmit = async () => {
     if (!currentChatId) {
-      const res = await axios.post("http://localhost:8080/startChat", {
-        title: question,
-      });
-      setCurrentChatId(res.data.chatId);
+      const res = await StartChat(question);
+      setCurrentChatId(res.chatId);
+    }
+    if (messages.length === 0) {
+      UpdateChatTitle({ id: currentChatId, title: question });
     }
     setIsLoadingAnswer(true);
     setMessages([...messages, { question, answer: "", reason: "" }]);
     setQuestion("");
-    const { answer, reason } = await AskOllama(question, model);
-    axios.post("http://localhost:8080/updateChatMessages", [
-      {
-        chatId: currentChatId,
-        question,
-        answer,
-        reason,
-      },
-    ]);
+    const { answer, reason } = await AskQuestion({
+      id: currentChatId,
+      question,
+      model,
+    });
     setMessages([...messages, { question, answer, reason }]);
     setIsLoadingAnswer(false);
   };

@@ -24,6 +24,7 @@ export async function initDb() {
         chatId INT NOT NULL,
         question TEXT,
         answer TEXT,
+        reason TEXT,
         FOREIGN KEY (chatId) REFERENCES chat(chatId)
       );
     `);
