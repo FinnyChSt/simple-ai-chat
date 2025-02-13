@@ -19,18 +19,21 @@ function MessageInput() {
   } = useChat();
   const [question, setQuestion] = useState("");
   const onSubmit = async () => {
-    if (!currentChatId) {
+    let id = currentChatId;
+    if (!id) {
       const res = await StartChat(question);
       setCurrentChatId(res.chatId);
+      id = res.chatId;
     }
+
     if (messages.length === 0) {
-      UpdateChatTitle({ id: currentChatId, title: question });
+      UpdateChatTitle({ id, title: question });
     }
     setIsLoadingAnswer(true);
     setMessages([...messages, { question, answer: "", reason: "" }]);
     setQuestion("");
     const { answer, reason } = await AskQuestion({
-      id: currentChatId,
+      id,
       question,
       model,
     });

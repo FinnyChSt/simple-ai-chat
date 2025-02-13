@@ -10,7 +10,7 @@ export interface ChatContextType {
   setIsLoadingAnswer: (isLoading: boolean) => void;
   model: string;
   setModel: (model: string) => void;
-  currentChatId: number;
+  currentChatId?: number;
   setCurrentChatId: (id: number) => void;
   chats: ChatsResponse[];
   setChats: (chats: ChatsResponse[]) => void;
