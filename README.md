@@ -1,20 +1,21 @@
 # simple-ai-chat
 
 This is a simple app to locally chat with you chosen AI from ollama
-It is ment to be a simple version of a chat bot which makes it easy to use a chat bot locally on your machine.
+It is designed to be an easy-to-use chatbot running locally on your machine.
 
 ## Setup
 
 To setup the app you need to have the following installed:
 
-- Node.js
-- Docker
-- ollama
+- [Node.js](https://nodejs.org/en/)
+- [Docker](https://www.docker.com/)
+- [ollama](https://ollama.com/)
 
 To setup the app you need to run the following commands:
 
 ```bash
 npm install
+npm run web-app-build
 ```
 
 ## Run
@@ -25,12 +26,18 @@ To run the app you need to run the following commands:
 npm start
 ```
 
+If you want to use a mariadb database you can run the following command:
+
+```bash
+docker-compose up -d
+```
+
 ## Documentation
 
 The application consists of two parts:
 
-- a node service
-- a web app as a SPA that is served under the route `/`
+Backend: A Node.js service
+Frontend: A web app Single Page Application served under the root route ("/")
 
 further documentation can be found in the [docs-Folder](docs):
 
