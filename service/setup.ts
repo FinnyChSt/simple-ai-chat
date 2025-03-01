@@ -1,7 +1,7 @@
 import mariadb from "mariadb";
 
 export const pool = mariadb.createPool({
-  host: "localhost",
+  host: process.env.DBHOST || "localhost",
   user: "maria",
   password: "maria123",
   database: "mariadb",
